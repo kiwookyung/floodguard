@@ -9,9 +9,11 @@
 - **캐시**: Redis
 - **배포**: AWS EC2, Docker Compose
 
-```
 
-```
+<img width="1497" height="696" alt="image" src="https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90" />
+<img width="956" height="719" alt="KakaoTalk_20250817_152134276" src="https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23" />
+
+
 
 ## Frontend
 
