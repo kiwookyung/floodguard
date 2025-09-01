@@ -1,0 +1,6 @@
+detect/
+test/
+.env
+output/
+
+__pycache__/
