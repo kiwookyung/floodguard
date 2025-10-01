@@ -82,10 +82,10 @@ api/
 ## 🎥 시연 GIF
 
 ### 침수 감지 및 알림
-![침수 감지](https://github.com/user-attachments/assets/IMG_3044-ezgif.com-video-to-gif-converter.gif)
+![침수 감지](ezgif.com-video-to-mp4-converter.mp4)
 
 ### 자동 차수막 제어
-![차수막 제어](https://github.com/user-attachments/assets/IMG_3045-ezgif.com-video-to-gif-converter.gif)
+![차수막 제어](IMG_3045-ezgif.com-video-to-mp4-converter.mp4)
 
 
 
