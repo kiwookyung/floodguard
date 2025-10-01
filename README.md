@@ -1,358 +1,167 @@
-# 침킬
-
-## 기술 스택
-
-- **프론트엔드**: React
-- **백엔드**: FastAPI
-- **리버스 프록시 / 라우팅**: Traefik
-- **데이터베이스**: PostgreSQL
-- **캐시**: Redis
-- **배포**: AWS EC2, Docker Compose
-
-
-<img width="1497" height="696" alt="image" src="https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90" />
-<img width="956" height="719" alt="KakaoTalk_20250817_152134276" src="https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23" />
-
-
-
-## Frontend
-
-# 🌊 침킬 Frontend
+# 🌊 침수킬러 (FloodGuard)
 
 > **지능형 CCTV 기반 침수 예방 자동화 시스템**  
-> React + Vite 기반의 프론트엔드 프로젝트로, 실시간 모니터링·예측·제어 기능을 제공합니다.
+> 침수 피해를 최소화하기 위해 **AIoT 기반 CCTV 감지, 예측, 자동 차수막 제어, 실시간 모니터링** 기능을 제공하는 프로젝트입니다.
 
-## 📌 개요
+---
 
-- **프레임워크**: React + Vite
-- **라우팅**: `react-router-dom` (`App.jsx` → `routes/index.jsx`)
-- **상태 관리**: Zustand (`stores/authStore.js`)
-- **UI**: MUI + Tailwind CSS (커스텀 테마 적용)
-- **차트**: Recharts
-- **지도**: Leaflet + OpenStreetMap
-- **빌드/배포**: Docker, Nginx
+## 📌 프로젝트 개요
 
-## 📂 디렉토리 구조
+- **목적**: 도심 침수 피해 예방 및 대응 자동화
+- **핵심 기능**:
+  - Jetson 기반 AI로 **실시간 침수 감지**
+  - 예측 모델 기반 **침수 위험도 산출**
+  - Raspberry Pi 연동 **자동 차수막 제어**
+  - 대시보드에서 **실시간 모니터링 및 수동 제어**
+  - CCTV 스트리밍 및 로그/알림 시스템 제공
+
+---
+
+## 🛠 기술 스택
+
+| 분야          | 사용 기술 |
+|--------------|-------------------------------------------|
+| **Frontend** | React + Vite, Zustand, MUI, Tailwind, Recharts, Leaflet(OSM) |
+| **Backend**  | FastAPI, SQLAlchemy, Alembic |
+| **DB/Cache** | PostgreSQL, Redis |
+| **Infra**    | AWS EC2, Docker Compose, Traefik |
+| **기타**     | WebSocket, JWT 인증 |
+
+---
+
+## 📂 프로젝트 구조
 
 ```
+Frontend
 frontend/
 ├── App.jsx
-├── main.jsx
-├── index.css
-├── index.html
-├── vite.config.js
 ├── components/
-│ ├── AlertLogTable.jsx
 │ ├── DashboardCards.jsx
+│ ├── PredictionChart.jsx
 │ ├── DevicePanel.jsx
-│ ├── FeaturesSection.jsx
-│ ├── GateControlModal.jsx
-│ ├── HealthCheck.jsx
-│ ├── HeroSection.jsx
+│ ├── AlertLogTable.jsx
 │ ├── InteractiveMap.jsx
 │ ├── LiveCameraModal.jsx
 │ ├── LiveVideoFeed.jsx
-│ ├── Logo.jsx
-│ ├── PredictionChart.jsx
-│ ├── RealTimeAlert.jsx
-│ ├── SystemArchitectureSection.jsx
 │ └── common/
 │ ├── Footer.jsx
 │ └── LoginHeader.jsx
 ├── pages/
-│ ├── FloodDashboard.jsx
 │ ├── IndexPage.jsx
 │ ├── LoginPage.jsx
+│ ├── FloodDashboard.jsx
 │ └── NotFoundPage.jsx
 ├── routes/
-│ ├── constants.js
-│ └── index.jsx
 ├── services/
-│ ├── auth.js
-│ ├── axios.js
-│ ├── cameras.js
-│ ├── gates.js
-│ ├── healthcheck.js
-│ ├── logs.js
-│ ├── prediction.js
-│ └── websocket.js
 └── stores/
-└── authStore.js
-```
 
-## 🖥 페이지 (Pages)
 
-| 경로         | 파일                 | 설명                                                |
-| ------------ | -------------------- | --------------------------------------------------- |
-| `/`          | `IndexPage.jsx`      | 랜딩 페이지 (Hero / Features / System Architecture) |
-| `/login`     | `LoginPage.jsx`      | 로그인 페이지                                       |
-| `/dashboard` | `FloodDashboard.jsx` | 메인 대시보드 (지도, 장비 제어, 로그, 예측 차트)    |
-| `/404`       | `NotFoundPage.jsx`   | 잘못된 경로 접근 시 표시                            |
-
-## 🛠 핵심 기능 컴포넌트
-
-| 컴포넌트               | 설명                        |
-| ---------------------- | --------------------------- |
-| `DashboardCards.jsx`   | 주요 지표 카드 요약         |
-| `PredictionChart.jsx`  | 침수 예측 라인 차트         |
-| `DevicePanel.jsx`      | 차수막 장비 상태/제어       |
-| `AlertLogTable.jsx`    | 경보 발생 내역              |
-| `InteractiveMap.jsx`   | CCTV/센서 지도 시각화       |
-| `RealTimeAlert.jsx`    | 실시간 경보 알림 (Snackbar) |
-| `GateControlModal.jsx` | 장비 제어 모달              |
-| `LiveCameraModal.jsx`  | 실시간 영상 모달            |
-| `LiveVideoFeed.jsx`    | 비디오 스트리밍 플레이어    |
-
----
-
-## 🎨 UI/소개 컴포넌트
-
-| 컴포넌트                        | 설명                    |
-| ------------------------------- | ----------------------- |
-| `HeroSection.jsx`               | 서비스 핵심 가치/CTA    |
-| `FeaturesSection.jsx`           | 기능 소개 섹션          |
-| `SystemArchitectureSection.jsx` | 아키텍처 다이어그램     |
-| `Logo.jsx`                      | SVG 로고                |
-| `common/LoginHeader.jsx`        | 로그인 페이지 상단      |
-| `common/Footer.jsx`             | 공통 푸터 + HealthCheck |
-| `HealthCheck.jsx`               | 서버/DB 상태 위젯       |
-
----
-
-## 🌐 Axios 설정
-
-```javascript
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: "/api",
-  timeout: 10000,
-  headers: { "Content-Type": "application/json" },
-});
-
-instance.interceptors.request.use((config) => {
-  const authStorage = localStorage.getItem("auth-storage");
-  const token = authStorage ? JSON.parse(authStorage).state.token : null;
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-instance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("auth-storage");
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
-  }
-);
-
-export default instance;
-
-/**
- * @typedef {Object} Device
- * @property {string} id
- * @property {string} name
- * @property {string} type
- * @property {number} lat
- * @property {number} lon
- * @property {Array<number>} position
- * @property {string} status
- * @property {string} description
- * @property {boolean} [canStream]
- * @property {boolean} [is_real]
- */
-
-/**
- * @typedef {Object} AlertLog
- * @property {string} id
- * @property {string} created_at
- * @property {string} time
- * @property {string} level
- * @property {string} device
- * @property {string} message
- * @property {JSX.Element} icon
- */
-
-/**
- * @typedef {Object} Prediction
- * @property {string} timestamp
- * @property {number} final_score
- */
-```
-
-# API 스팩
-
-| Endpoint                       | Method | 설명        | 요청                     | 응답                           | 오류    |
-| ------------------------------ | ------ | ----------- | ------------------------ | ------------------------------ | ------- |
-| `/api/auth/login`              | POST   | 로그인      | `{ username, password }` | `{ access_token, token_type }` | 401     |
-| `/api/auth/me`                 | GET    | 사용자 조회 | -                        | `{ id, email }`                | 401     |
-| `/api/cameras`                 | GET    | CCTV 목록   | -                        | `Device[]`                     | -       |
-| `/api/gates`                   | GET    | 차수막 목록 | -                        | `Device[]`                     | -       |
-| `/api/gates/control`           | POST   | 전체 제어   | `{ action }`             | `{ message }`                  | 400     |
-| `/api/gates/{gate_id}/control` | POST   | 단일 제어   | `{ action }`             | `{ message }`                  | 400/404 |
-| `/api/logs`                    | GET    | 로그 조회   | `?period`                | `AlertLog[]`                   | -       |
-| `/api/scores/history`          | GET    | 예측 조회   | -                        | `Prediction[]`                 | -       |
-| `/api/health`                  | GET    | 상태 확인   | -                        | `{ status }`                   | 503     |
-
-# 🔄 WebSocket 이벤트
-
-| Endpoint          | 타입           | 방향  | 필드                                               | 설명             |
-| ----------------- | -------------- | ----- | -------------------------------------------------- | ---------------- |
-| `/ws/logs`        | `log`          | S → C | `id`, `created_at`, `action`, `details`, `gate_id` | 새 알림 로그     |
-| `/ws/gate-status` | `gate_status`  | S → C | `{ gate_id, status }`                              | 차수막 상태 변경 |
-| `/ws/prediction`  | `prediction`   | S → C | `{ timestamp, final_score }`                       | 예측 결과        |
-| `/ws/prediction`  | `start_stream` | C → S | -                                                  | 예측 스트림 시작 |
-| `/ws/prediction`  | `stop_stream`  | C → S | -                                                  | 예측 스트림 중지 |
-
-# 🗺 지도 마커 규격
-
-| 타입        | 아이콘 | 기본 색상 | 선택 색상      | 상태     | 설명              |
-| ----------- | ------ | --------- | -------------- | -------- | ----------------- |
-| `cctv-real` | 📹     | #16a34a   | #fbbf24 테두리 | 온라인   | 실시간 CCTV       |
-| `cctv-sim`  | 📹     | #16a34a   | #fbbf24 테두리 | 온라인   | 시뮬레이션 CCTV   |
-| `gate-real` | 🚪     | #3b82f6   | #fbbf24 테두리 | 온라인   | 실제 차수막       |
-| `gate-sim`  | 🚪     | #3b82f6   | #fbbf24 테두리 | 온라인   | 시뮬레이션 차수막 |
-| `offline`   | ❓     | #666666   | #fbbf24 테두리 | 오프라인 | 연결 끊김         |
-
-## Backend
-
-# Hero API 🦸‍♂️
-
-A modern, production-ready FastAPI template for building scalable APIs.
-
-## Features ✨
-
-- 🔄 Complete CRUD operations for heroes
-- 📊 Async SQLAlchemy with PostgreSQL
-- 🔄 Automatic Alembic migrations
-- 🏗️ Clean architecture with repository pattern
-- ⚠️ Custom exception handling
-- 🔍 CI and testing pipeline
-- 🧹 Linter setup with pre-commit hooks
-- 🚂 One-click Railway deployment
-
-## Deploy Now! 🚀
-
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/wbTudS?referralCode=beBXJA)
-
-## Project Structure 📁
-
-```
+Backend
 api/
-├── core/              # Core functionality
-│   ├── config.py      # Environment and app configuration
-│   ├── database.py    # Database connection and sessions
-│   ├── exceptions.py  # Global exception handlers
-│   ├── logging.py     # Logging configuration
-│   └── security.py    # Authentication and security
+├── core/ # 환경설정, 보안, DB 연결
 ├── src/
-│   ├── heroes/        # Heroes module
-│   │   ├── models.py      # Database models
-│   │   ├── repository.py  # Data access layer
-│   │   ├── routes.py      # API endpoints
-│   │   └── schemas.py     # Pydantic models
-│   └── users/         # Users module
-│       ├── models.py      # User models
-│       ├── repository.py  # User data access
-│       ├── routes.py      # User endpoints
-│       └── schemas.py     # User schemas
-├── utils/            # Utility functions
-└── main.py          # Application entry point
+│ ├── users/ # 사용자 관리
+│ ├── devices/ # CCTV, 차수막 제어
+│ ├── logs/ # 알림 로그
+│ └── prediction/ # 예측 API
+├── utils/
+└── main.py
 ```
 
-## Requirements 📋
 
-- Python 3.8+
-- PostgreSQL
+---
 
-## Setup 🛠️
+## 📸 서비스 화면
 
-1. Install uv (follow instructions [here](https://docs.astral.sh/uv/#getting-started))
+| 메인 대시보드 | CCTV 스트리밍 | 차수막 제어 |
+|---------------|---------------|-------------|
+| ![dashboard](https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90) | ![cctv](https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23) | 제어 모달 스샷 |
 
-2. Clone the repository:
+---
 
-```bash
-git clone https://github.com/yourusername/minimalistic-fastapi-template.git
-cd minimalistic-fastapi-template
-```
+## 🎥 시연 영상
 
-3. Install dependencies with uv:
+- [침수 감지 및 알림 시연 영상](https://youtu.be/your_video_link1)  
+- [자동 차수막 제어 시연 영상](https://youtu.be/your_video_link2)  
 
-```bash
-uv sync
-```
 
-4. Set up environment variables:
 
-```bash
+## 🌐 주요 API (예시)
+
+| Endpoint                       | Method | 설명        |
+| ------------------------------ | ------ | ----------- |
+| `/api/auth/login`              | POST   | 로그인 |
+| `/api/auth/me`                 | GET    | 사용자 조회 |
+| `/api/cameras`                 | GET    | CCTV 목록 |
+| `/api/gates/{gate_id}/control` | POST   | 단일 차수막 제어 |
+| `/api/logs`                    | GET    | 경보 로그 조회 |
+| `/api/scores/history`          | GET    | 예측 결과 조회 |
+
+---
+
+## 🔄 WebSocket 이벤트
+
+| Endpoint      | 이벤트 타입   | 설명             |
+|---------------|--------------|------------------|
+| `/ws/logs`    | `log`        | 새로운 경보 로그 |
+| `/ws/gate-status` | `gate_status` | 차수막 상태 변경 |
+| `/ws/prediction`  | `prediction`  | 예측 결과 스트림 |
+
+---
+
+## 🚀 실행 방법
+
+### 1) 환경변수 설정
+
 cp .env.example .env
-# Edit .env with your database credentials
-```
 
-> 💡 **Important**:
->
-> - The DATABASE_URL must start with `postgresql+asyncpg://` (e.g., `postgresql+asyncpg://user:pass@localhost:5432/dbname`)
-> - After updating environment variables, close and reopen VS Code to reload the configuration properly. VS Code will automatically activate the virtual environment when you reopen.
+### 2) 도커 실행
+docker-compose up -d
 
-5. Start the application:
+### #) 접속
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000/docs
 
-Using terminal:
+---
 
-```bash
-uv run uvicorn api.main:app
-```
+## 🐞 트러블슈팅
 
-Using VS Code:
+- Git Large File Storage(LFS) 문제: 모델 가중치 파일은 Git LFS로 관리
 
-> 💡 If you're using VS Code, we've included run configurations in the `.vscode` folder. Just press `F5` or use the "Run and Debug" panel to start the application!
+- WebSocket 지연: Nginx 설정에서 버퍼 크기 조정
 
-6. (Optional) Enable pre-commit hooks for linting:
+- MQTT 연결 불안정: 브로커 QoS 레벨 최적화
 
-```bash
-uv run pre-commit install
-```
+---
 
-> 💡 This will enable automatic code formatting and linting checks before each commit
+## 👥 팀 구성 및 역할
 
-## Creating a Migration 🔄
+- 팀장: 기획 및 전체 아키텍처 설계
 
-1. Make changes to your models
-2. Generate migration:
+- Frontend(기우경): React 대시보드, CCTV/지도 UI, 알림 시스템
 
-```bash
-alembic revision --autogenerate -m "your migration message"
-```
+- Backend(최승훈): FastAPI 서버, WebSocket, DB 설계
 
-Note: Migrations will be automatically applied when you start the application - no need to run `alembic upgrade head` manually!
+- AI/IoT(강민정,김성재,서양하,정상진): Jetson 모델 학습, Raspberry Pi 연동, 장비 제어
 
-## API Endpoints 📊
 
-### Heroes
+## 성과 및 배운 점
 
-- `GET /heroes` - List all heroes
-- `GET /heroes/{id}` - Get a specific hero
-- `POST /heroes` - Create a new hero
-- `PATCH /heroes/{id}` - Update a hero
-- `DELETE /heroes/{id}` - Delete a hero
+### 성과
 
-### Authentication
+- 침수 대응을 위한 실시간 모니터링 시스템 구현
 
-- `POST /auth/register` - Register a new user
-- `POST /auth/login` - Login and get access token
-- `GET /auth/me` - Get current user profile
+- AI + IoT + 웹 통합 서비스 개발 경험 축적
 
-## Example Usage 📝
+### 배운 점
 
-Create a new hero:
+- 대규모 팀 프로젝트에서 역할 분담과 협업의 중요성
 
-```bash
-curl -X POST "http://localhost:8000/heroes/" -H "Content-Type: application/json" -d '{
-    "name": "Peter Parker",
-    "alias": "Spider-Man",
-    "powers": "Wall-crawling, super strength, spider-sense"
-}'
-```
+- WebSocket, 실시간 스트리밍, 인프라 자동화 경험
+
+- 프론트엔드·백엔드·AIoT의 연동 과정 이해
+
+---
+## 📜 라이선스
+
+이 프로젝트는 내부 학습/연구 목적이며 별도 라이선스 없이 사용되었습니다.
