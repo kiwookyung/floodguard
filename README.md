@@ -81,13 +81,9 @@ api/
 
 ## 🎥 시연 GIF
 
-### 침수 감지 및 알림
-![침수 감지](ezgif.com-video-to-mp4-converter.mp4)
+https://github.com/user-attachments/assets/872baf68-da39-4601-bd88-3d0801a9079a
 
-### 자동 차수막 제어
-![차수막 제어](IMG_3045-ezgif.com-video-to-mp4-converter.mp4)
-
-
+https://github.com/user-attachments/assets/15fc59bb-170d-459b-a163-5354510d6e87
 
 
 ## 🌐 주요 API (예시)
