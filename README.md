@@ -75,14 +75,18 @@ api/
 
 | 메인 대시보드 | CCTV 스트리밍 | 차수막 제어 |
 |---------------|---------------|-------------|
-| ![dashboard](https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90) | ![cctv](https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23) | 제어 모달 스샷 |
+| ![dashboard](https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90) | ![cctv](https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23) | ![차수막 제어](https://github.com/user-attachments/assets/IMG_3044-ezgif.com-video-to-gif-converter.gif) |
 
 ---
 
-## 🎥 시연 영상
+## 🎥 시연 GIF
 
-- [침수 감지 및 알림 시연 영상](https://youtu.be/your_video_link1)  
-- [자동 차수막 제어 시연 영상](https://youtu.be/your_video_link2)  
+### 침수 감지 및 알림
+![침수 감지](https://github.com/user-attachments/assets/IMG_3044-ezgif.com-video-to-gif-converter.gif)
+
+### 자동 차수막 제어
+![차수막 제어](https://github.com/user-attachments/assets/IMG_3045-ezgif.com-video-to-gif-converter.gif)
+
 
 
 
