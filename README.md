@@ -29,6 +29,11 @@
 
 ---
 
+## 아키텍처
+![아키텍처](https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23)
+
+---
+
 ## 📂 프로젝트 구조
 
 ```
@@ -73,11 +78,14 @@ api/
 
 ## 📸 서비스 화면
 
-| 메인 대시보드 | CCTV 스트리밍 | 차수막 제어 |
-|---------------|---------------|-------------|
-| ![dashboard](https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90) | ![cctv](https://github.com/user-attachments/assets/fe40a58a-b94e-46bc-bbaa-b1a962f60f23) | ![차수막 제어](https://github.com/user-attachments/assets/IMG_3044-ezgif.com-video-to-gif-converter.gif) |
+| 메인 대시보드 | 하드웨어 모형 |
+|---------------|---------------|
+| <img width="1918" height="1075" alt="image (2)" src="https://github.com/user-attachments/assets/f03b218a-3df7-44a9-8432-b3d0c6e4dee8" />| ![하드웨어](https://github.com/user-attachments/assets/5ac51856-cacc-491c-84b2-193c50d28f90) |
+
 
 ---
+
+
 
 ## 🎥 시연 GIF
 
